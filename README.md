@@ -22,7 +22,7 @@ $P_{i}$: Volume de sementes predito
 
 $ \frac{\sum_{i=0}^{n} y_{i}}{n} \ge 0.96$
 
-$ 1.23 * A_{i} * P_{i} \ge 2.5*T_{i}$
+$ 1.23 * P_{i} * A_{i} \ge 2.5*T_{i}$
 
 $1.23 * A_{i} * P_{i} \le 2.5*T_{i} + 50000$
 
