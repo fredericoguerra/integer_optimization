@@ -35,3 +35,9 @@ $y_{i} \in \{0,1\}$
 ### Função Objetivo:
 
 $ Min f(A) = 1.23 * \sum_{i=0}^{n} A_{i}$
+
+## Resultados
+
+* Total de área recomendada pelo time de planejamento: 3600
+* Total de área recomendada pelo modelo:3362.0
+* Unidades de área relativa reduzida: 6.61%
