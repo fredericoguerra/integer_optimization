@@ -1,10 +1,11 @@
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 import json
 from numpy.ma.core import var
 from mip import *
 
-predictions = pd.read_csv('./data/predictions.csv',delimiter=';')
+predictions = pd.read_csv('predictions.csv',delimiter=';')
 predictions['seed_target_class'] = np.where(predictions['seed_target'] > 15000, 2, 1)
 
 margin = 2.5
@@ -55,5 +56,5 @@ df_solution = df_solution.reset_index().rename(columns={'index':'hyb_index'})
 
 rec = pd.merge(how='left', left=predictions, right=df_solution, on='hyb_index')
 rec['Recomendacao_Planejamento'] = 24
-rec.to_csv('./data/final_recommendation.csv')
+rec.to_csv('final_recommendation.csv')
 print(f"Total de área recomendada pelo time de planejamento: {sum(rec['Recomendacao_Planejamento'])} \nTotal de área recomendada pelo modelo:{rec['num_plots_optimized'].sum()} \nUnidades de área relativa reduzida: {np.round((sum(rec['Recomendacao_Planejamento'])-rec['num_plots_optimized'].sum())/sum(rec['Recomendacao_Planejamento'])*100,2)}%")

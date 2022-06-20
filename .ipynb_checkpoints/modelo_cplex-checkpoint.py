@@ -5,14 +5,14 @@ import matplotlib.pyplot as plt
 import json
 from numpy.ma.core import var
 
-predictions = pd.read_csv('predictions.csv',delimiter=';')
+#Utilizar o pythonMIP - CBC
+
+predictions = pd.read_csv('./data/predictions.csv',delimiter=';')
 predictions = predictions.head(150)
 predictions['seed_target_class'] = np.where(predictions['seed_target'] > 15000, 2, 1)
 
-
-
 margin = 2.5
-target = 97
+target = 96
 
 df_solution = pd.DataFrame()
 mdl = Model('reduction_factor')
@@ -38,12 +38,10 @@ hybrids_met_target = (mdl.sum(metst_optimized[i] for i in var_indices)/len(var_i
 
 mdl.minimize(area_planted)
 mdl.solve()
-mdl.solution.export('results.json')
-
-
+mdl.solution.export('./data/results.json')
 
 df_solution = pd.DataFrame()
-with open('./results.json','r') as results:
+with open('./data/results.json','r') as results:
     data = json.load(results)
     for i in data['CPLEXSolution']['variables']:
         df_solution = df_solution.append(i,ignore_index=True)
@@ -62,6 +60,6 @@ recommendation['SeedProductionOptimized'] = np.round(recommendation['SeedProduct
 recommendation = recommendation.fillna(0)
 recommendation['SeedProductionOptimized'] = recommendation['SeedProductionOptimized'].astype(int)
 recommendation['NumPlotsOptimized'] = recommendation['NumPlotsOptimized'].astype(float)
-recommendation.to_csv('final_recommendation.csv')
+recommendation.to_csv('./data/final_recommendation.csv')
 
 print(f"Total de área recomendada pelo time de planejamento: {sum(recommendation['Recomendacao_Planejamento'])} \nTotal de área recomendada pelo modelo:{sum(recommendation['NumPlotsOptimized'])} \nUnidades de área relativa reduzida: {np.round((sum(recommendation['Recomendacao_Planejamento'])-sum(recommendation['NumPlotsOptimized']))/sum(recommendation['Recomendacao_Planejamento'])*100,2)}%")
