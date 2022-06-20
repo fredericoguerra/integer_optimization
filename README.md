@@ -38,7 +38,6 @@ $ Min f(A) = 1.23 * \sum_{i=0}^{n} A_{i}$
 
 ## Resultados
 
-<<<<<<< HEAD
 * Total de área recomendada pelo time de planejamento: 8160
 * Total de área recomendada pelo modelo:7658.0
 * Unidades de área relativa reduzida: 6.15%
@@ -65,8 +64,3 @@ Total time (CPU seconds):       0.03   (Wallclock seconds):       0.03
 Total de área recomendada pelo time de planejamento: 8160
 Total de área recomendada pelo modelo:7658.0
 Unidades de área relativa reduzida: 6.15%
-=======
-* Total de área recomendada pelo time de planejamento: 3600
-* Total de área recomendada pelo modelo:3362.0
-* Unidades de área relativa reduzida: 6.61%
->>>>>>> b0afb3f8f16026a998496147ec50888957a31f72
